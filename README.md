@@ -8,17 +8,17 @@ goals
 
 usage
 -----
-<script id="contact-list" type="jtmpl">
-	<div jtmpl-each="contacts">
-		<p jtmpl-test="info/firstname or info/lastname">
-    		<span jtmpl-select="info/firstname">Default value</span>
-    		<span jtmpl-select="info/lastname">Default value</span>
-		</p>
-		<p jtmpl-test="info/company">
-    		<span jtmpl-select="info/company">Default value</span>
-		</p>
-		<span jtmpl-test="category='work'">(work)</span>
-	</div>
-</div>
+	<script id="contact-list" type="jtmpl">
+		<div jtmpl-each="contacts">
+			<p jtmpl-test="info/firstname or info/lastname">
+	    		<span jtmpl-select="info/firstname">Default value</span>
+	    		<span jtmpl-select="info/lastname">Default value</span>
+			</p>
+			<p jtmpl-test="info/company">
+	    		<span jtmpl-select="info/company">Default value</span>
+			</p>
+			<span jtmpl-test="category='work'">(work)</span>
+		</div>
+	</script>
 
 

@@ -3,6 +3,7 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<link rel="stylesheet" href="http://code.jquery.com/qunit/git/qunit.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="http://code.jquery.com/qunit/git/qunit.js"></script>
+		<script src="../lib/JPath/src/JPath.js"></script>
 		<script src="../src/JTmpl.js"></script>
 		<script src="test.js"></script>
 	</head>
@@ -13,5 +14,18 @@
 		<h2 id="qunit-userAgent"></h2>
 		<ol id="qunit-tests"></ol>
 		<div id="qunit-fixture">test markup, will be hidden</div>
+		<div id="test-fixture">test</div>
+		<script id="example1" type="jtmpl">
+			<div data-jtmpl-each="directory">
+				<p>
+		    		<span data-jtmpl-select="firstname">Default value</span>
+		    		<span data-jtmpl-select="lastname">Default value</span>
+				</p>
+				<p jtmpl-test="company">
+		    		<span data-jtmpl-select="company">Default value</span>
+				</p>
+				<span data-jtmpl-test="category='work'">(work)</span>
+			</div>
+		</script>
 	</body>
 </html>
