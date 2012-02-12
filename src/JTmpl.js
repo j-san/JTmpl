@@ -22,16 +22,15 @@
 	JTmpl.call = function(id,data) {
 		var tmpl = templates[id];
 		if(tmpl instanceof jQuery){
-			return transform(tmpl.clone(), data).children();
+			return transform(tmpl.clone(), new JPath(data)).children();
 		} else {
-			return tmpl(data);
+			return tmpl(new JPath(data));
 		}
 	}
 	
 	function transform($elem,data) {
 		$elem.find('*[data-jtp-each]').each(function() {
 			var $this = $(this);
-			console.log('each', this);
 			if(!$this.parents('*[data-jtp-each]').length) {
 				data.q($this.data('jtpEach'),function(i,e) {
 					var res = transform($this.clone().removeAttr('data-jtp-each'), e)
@@ -52,6 +51,14 @@
 			$this.removeAttr('data-jtp-test');
 		});
 		
+		$elem.find('*[data-jtp-call]').each(function() {
+			var $this = $(this),
+			 	tmpl = $this.data('jtp-call'),
+			 	value = JTmpl.call(tmpl, data);
+
+			$this.html(value).removeAttr('data-jtp-call');
+		});
+
 		$elem.find('*[data-jtp-select]').each(function() {
 			var $this = $(this),
 			 	selector = $this.data('jtp-select'),
@@ -60,13 +67,7 @@
 			$this.html(value).removeAttr('data-jtp-select');
 		});
 	
-		$elem.find('*[data-jtp-call]').each(function() {
-			var $this = $(this),
-			 	tmpl = $this.data('jtp-call'),
-			 	value = JTmpl.call(tmpl, data);
 
-			$this.html(value).removeAttr('data-jtp-call');
-		});
 
 		return $elem;
 	}
