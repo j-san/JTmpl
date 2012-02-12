@@ -4,6 +4,14 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="../lib/JPath/src/JPath.js"></script>
 		<script src="../src/JTmpl.js"></script>
+		<script id="feeds-tmpl" type="jtmpl">
+			<div class="feed" data-jtp-each="data">
+				<h2>feed</h2>
+				<p class="feed" data-jtp-select="message">message</p>
+				<span class="feed" data-jtp-select="from/name">from</span>
+			</div>
+		</script>
+
 		<script>
 		function loadFeeds() {
 			FB.login(function(response) {
@@ -13,7 +21,6 @@
 				});
 			}, {scope: 'read_stream'});
 		}
-		
 		
 		window.fbAsyncInit = function() {
 			FB.init({
@@ -37,17 +44,6 @@
 		     js.src = "//connect.facebook.net/en_US/all.js";
 		     d.getElementsByTagName('head')[0].appendChild(js);
 		}(document));
-
-
-		
-
-		</script>
-		<script id="feeds-tmpl" type="jtmpl">
-			<div class="feed" data-jtp-each="data">
-				<h2>feed</h2>
-				<p class="feed" data-jtp-select="message">message</p>
-				<span class="feed" data-jtp-select="from/name">from</span>
-			</div>
 		</script>
 	</head>
 	<body>
@@ -55,5 +51,15 @@
 		<button id="load-fb">load feeds</button>
 		<div id="fb-root"></div>
 		<div id="fb-feeds"></div>
+		
+		<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+		<script type="text/javascript">
+		try {
+		var pageTracker = _gat._getTracker("UA–29145433–1");
+		pageTracker._trackPageview();
+		} catch(err) {}</script>
 	</body>
 </html>
