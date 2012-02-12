@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="../lib/JPath/src/JPath.js"></script>
+		<script src="../src/JTmpl.js"></script>
+		<script>
+		function loadFeeds() {
+			FB.login(function(response) {
+				FB.api('/me/feed', function(response) {
+					console.log(response.data)
+					$('#fb-feeds').append(JTmpl.call('feeds-tmpl',response));
+				});
+			}, {scope: 'read_stream'});
+		}
+		
+		
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId      : '381442358536288', // App ID
+			});
+			$(function() {
+				FB.getLoginStatus(function(response) {
+				  if (response.status === 'connected') {
+					loadFeeds();
+				  }
+				});
+				$('#load-fb').click(function(evt) {
+					loadFeeds();
+				});
+			});
+		};
+		(function(d){
+		  	// Load the SDK Asynchronously
+		     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+		     js = d.createElement('script'); js.id = id; js.async = true;
+		     js.src = "//connect.facebook.net/en_US/all.js";
+		     d.getElementsByTagName('head')[0].appendChild(js);
+		}(document));
+
+
+		
+
+		</script>
+		<script id="feeds-tmpl" type="jtmpl">
+			<div class="feed" data-jtp-each="data">
+				<h2>feed</h2>
+				<p class="feed" data-jtp-select="message">message</p>
+				<span class="feed" data-jtp-select="from/name">from</span>
+			</div>
+		</script>
+	</head>
+	<body>
+		<h1>Facebook feeds</h1>
+		<button id="load-fb">load feeds</button>
+		<div id="fb-root"></div>
+		<div id="fb-feeds"></div>
+	</body>
+</html>
