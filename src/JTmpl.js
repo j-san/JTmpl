@@ -51,10 +51,14 @@
 			$this.removeAttr('data-jtp-test');
 		});
 		
+		//attr
+		//retain
+		
 		$elem.find('*[data-jtp-call]').each(function() {
 			var $this = $(this),
 			 	tmpl = $this.data('jtp-call'),
-			 	value = JTmpl.call(tmpl, data);
+			 	value = JTmpl.call(tmpl, data) || '';
+			//select
 
 			$this.html(value).removeAttr('data-jtp-call');
 		});

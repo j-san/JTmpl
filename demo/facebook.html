@@ -4,39 +4,92 @@
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="../lib/JPath/src/JPath.js"></script>
 		<script src="../src/JTmpl.js"></script>
+
+		<script src="https://raw.github.com/csnover/js-iso8601/master/iso8601.js"></script>
+
+
 		<script id="feeds-tmpl" type="jtmpl">
 			<div class="feed" data-jtp-each="data">
-				<h2>feed</h2>
-				<p class="feed" data-jtp-select="message">message</p>
-				<span class="feed" data-jtp-select="from/name">from</span>
+				<h2>Feed from <i data-jtp-select="from/name">From</i></h2>
+				<p class="feed" data-jtp-select="message">Message</p>
+				<a data-jtp-attr-href="link"><img data-jtp-attr-scr="picture"/></a>
+				<p><span data-jtp-call="age">Age</span> ago</p>
+				<div class="comments" data-jtp-test="comments/data">
+					<h3>Comments</h3>
+					<div data-jtp-each="comments/data">
+						<strong data-jtp-select="from/name">From</strong>:
+						<span data-jtp-select="message">Comment</span>
+					</div>
+				</div>
 			</div>
 		</script>
 
+
 		<script>
-		function loadFeeds() {
-			FB.login(function(response) {
-				FB.api('/me/feed', function(response) {
-					console.log(response.data)
-					$('#fb-feeds').append(JTmpl.call('feeds-tmpl',response));
-				});
-			}, {scope: 'read_stream'});
+		function connected() {
+			console.log('load');
+			$('#fb-feeds').html('loading...');
+			FB.api('/me/home', function(response) {
+				console.log(response);
+				$('#fb-feeds').html(JTmpl.call('feeds-tmpl',response));
+			});
 		}
 		
+		JTmpl.register('age', function(data) {
+			var creation = new Date(Date.parse(data.q('created_time')[0].substring(0, 19)));
+			var diff = new Date() - creation;
+			diff = diff / 1000 / 60;
+			if(diff < 1) {
+				return "A few seconds";
+			}
+
+			if(diff < 60) {
+				return Math.floor(diff) + " minutes";
+			}
+			
+			diff = diff / 60;
+			if(diff < 24) {
+				return Math.floor(diff) + " hours";
+			}
+
+			diff = diff / 24;
+			return Math.floor(diff) + " days";
+		});
+		
+		</script>
+	</head>
+	<body>
+		<h1>Facebook feeds</h1>
+		<button id="load-fb" style="display: none;">load feeds</button>
+		<div id="fb-root"></div>
+		<div id="fb-feeds"></div>
+
+
+
+		<script type="text/javascript">
+
 		window.fbAsyncInit = function() {
+			console.log(location)
 			FB.init({
-				appId      : '381442358536288', // App ID
+				appId      : (location.hostname=='localhost' ? '116423505150733': '381442358536288'), // App ID
 			});
 			$(function() {
 				FB.getLoginStatus(function(response) {
-				  if (response.status === 'connected') {
-					loadFeeds();
-				  }
-				});
-				$('#load-fb').click(function(evt) {
-					loadFeeds();
+					if (response.status === 'connected') {
+						connected();
+				  	} else {
+						$('#load-fb').show().click(function(evt) {
+							
+							FB.login(function(response) {
+								$('#load-fb').hide();
+								connected();
+							}, {scope: 'read_stream'});
+						});
+					}
 				});
 			});
 		};
+
 		(function(d){
 		  	// Load the SDK Asynchronously
 		     var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
@@ -44,22 +97,16 @@
 		     js.src = "//connect.facebook.net/en_US/all.js";
 		     d.getElementsByTagName('head')[0].appendChild(js);
 		}(document));
-		</script>
-	</head>
-	<body>
-		<h1>Facebook feeds</h1>
-		<button id="load-fb">load feeds</button>
-		<div id="fb-root"></div>
-		<div id="fb-feeds"></div>
-		
-		<script type="text/javascript">
+
+
+
 		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
 		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-		</script>
-		<script type="text/javascript">
+
 		try {
-		var pageTracker = _gat._getTracker("UA–29145433–1");
-		pageTracker._trackPageview();
-		} catch(err) {}</script>
+			var pageTracker = _gat._getTracker("UA–29145433–1");
+			pageTracker._trackPageview();
+		} catch(err) {}
+		</script>
 	</body>
 </html>
