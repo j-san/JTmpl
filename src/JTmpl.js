@@ -32,8 +32,8 @@
 		$elem.find('*[data-jtp-each]').each(function() {
 			var $this = $(this);
 			if(!$this.parents('*[data-jtp-each]').length) {
-				data.q($this.data('jtpEach'),function(i,e) {
-					var res = transform($this.clone().removeAttr('data-jtp-each'), e)
+				data.q($this.data('jtp-each'),function(i,e) {
+					var res = transform($this.clone().removeAttr('data-jtp-each'), new JPath(e))
 					$this.before(res);
 				})
 			}
