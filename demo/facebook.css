@@ -1,0 +1,13 @@
+.feed {
+	max-width: 200px;
+	display: inline-block;
+	border: 1px solid black;
+	margin: 10px;
+	padding: 10px;
+	vertical-align: top;
+}
+
+.feed .link {
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
