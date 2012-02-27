@@ -1,6 +1,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link type="text/css" rel="stylesheet" href="facebook.css"></link>
+		
 		<script src="http://code.jquery.com/jquery-latest.js"></script>
 		<script src="../lib/JPath/src/JPath.js"></script>
 		<script src="../src/JTmpl.js"></script>
@@ -11,8 +13,16 @@
 		<script id="feeds-tmpl" type="jtmpl">
 			<div class="feed" data-jtp-each="data">
 				<h2>Feed from <i data-jtp-select="from/name">From</i></h2>
-				<p class="feed" data-jtp-select="message">Message</p>
-				<a data-jtp-attr-href="link"><img data-jtp-attr-scr="picture"/></a>
+				<p>
+					<a data-jtp-test="picture" data-jtp-attr="href" data-jtp-select="link">
+						<img data-jtp-attr="src" data-jtp-select="picture"/>
+					</a>
+				</p>
+				<a class="link" data-jtp-test="link" data-jtp-attr='{"href":"link"}'>
+					<span data-jtp-test="story" data-jtp-select="story">Story</span>
+					<span data-jtp-test="name" data-jtp-select="name">Link</span>
+				</a>
+				<p data-jtp-select="message">Message</p>
 				<p><span data-jtp-call="age">Age</span> ago</p>
 				<div class="comments" data-jtp-test="comments/data">
 					<h3>Comments</h3>
@@ -26,9 +36,9 @@
 
 
 		<script>
-		function connected() {
+		function loading() {
 			console.log('load');
-			$('#fb-feeds').html('loading...');
+			$('#fb-feeds').html('Loading...');
 			FB.api('/me/home', function(response) {
 				console.log(response);
 				$('#fb-feeds').html(JTmpl.call('feeds-tmpl',response));
@@ -62,27 +72,26 @@
 		<h1>Facebook feeds</h1>
 		<button id="load-fb" style="display: none;">load feeds</button>
 		<div id="fb-root"></div>
-		<div id="fb-feeds"></div>
+		<div id="fb-feeds">Loading...</div>
 
 
 
 		<script type="text/javascript">
 
 		window.fbAsyncInit = function() {
-			console.log(location)
 			FB.init({
 				appId      : (location.hostname=='localhost' ? '116423505150733': '381442358536288'), // App ID
 			});
 			$(function() {
 				FB.getLoginStatus(function(response) {
 					if (response.status === 'connected') {
-						connected();
+						loading();
 				  	} else {
 						$('#load-fb').show().click(function(evt) {
 							
 							FB.login(function(response) {
 								$('#load-fb').hide();
-								connected();
+								loading();
 							}, {scope: 'read_stream'});
 						});
 					}
