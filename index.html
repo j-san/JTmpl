@@ -27,6 +27,7 @@
 		p { padding-left: 1.5em; }
 		fieldset { margin-top: 2em; border-radius: 8px; border-color: #555; box-shadow: inset -2px -2px 8px #888; }
 		fieldset p { padding-left: 3em; }
+		textarea { width: 100%; height: 24em; }
 		pre { background: #555; color: #fff; padding: 15px;}
 		hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 		.footer { text-align:center; padding-top:30px; font-style: italic; }
@@ -63,6 +64,14 @@
 	        <p>Javascript tempting with XPath inside html attributes using JPath</p>
 	    </div>
 
+		<h2>goals</h2>
+			<ul>
+			<li>No text based parser, no language to learn, all known html/javascript</li>
+			<li>Streight to the point</li>
+			<li>Simple to use</li>
+			<li>Power of the XPath sintax serving javascript</li>
+			</ul>
+
 		<h2>Documentation</h2>
 		<div id="documentation">
 			<fieldset>
@@ -96,6 +105,26 @@
 					<p>(work in progress)</p>
 			</fieldset>
 		</div>
+		<h2>Example</h2>
+			<textarea>
+
+				<script id="me" type="text/jtmpl">
+					<div jtmpl-each="contacts">
+						<p jtmpl-test="firstname and lastname">
+				    		<span jtmpl-select="firstname">Jonathan</span>
+				    		<span jtmpl-select="lastname">Sanchez</span>
+						</p>
+						<span jtmpl-test="state='happy'">He is happy !</span>
+					</div>
+				</script>
+				<script type="text/javascript">
+					document.body.innerHtml = JTmpl.call('me',{
+						firstname: 'John',
+						lastname: 'Malckovish',
+						state: 'fussy'
+					});
+				</script>
+			</textarea>
 		<h2>Dependencies</h2>
 	    	<p><a href="https://github.com/jquery/jquery">jQuery</a> and <a href="https://github.com/j-san/JPath">JPath</a></p>
 
