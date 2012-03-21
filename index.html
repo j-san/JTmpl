@@ -4,6 +4,8 @@
 	<meta charset='utf-8'>
 
 	<title>j-san/JTmpl @ GitHub</title>
+	<meta name="description" content="Html Template builder for JavaScript Web Application like Browser Extention or Phonegap Application" />
+	<meta name="keywords" content="Application, JavaScript Template, Web Application, JavaScript Application, Browser Extention, Phonegap" />
 
 	<style type="text/css">
 		body {
@@ -31,18 +33,21 @@
 	</style>
 
 	<script type="text/javascript">
-	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-29145433-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
 	</script>
-	<script type="text/javascript">
-	try {
-	var pageTracker = _gat._getTracker("UA–29145433–1");
-	pageTracker._trackPageview();
-	} catch(err) {}</script>
 </head>
 
 <body>
-	<a href="https://github.com/j-san/JTmpl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+	<a href="https://github.com/j-san/JTmpl">
+		<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 	<div id="container">
 	    <div class="download">
 	      <a href="https://github.com/j-san/JTmpl/zipball/master">
@@ -64,13 +69,31 @@
 				<legend><h3>JavaScript Functions</h3></legend>
 				<h4>register (string id, sting|jQuery|function tmpl)</h4>
 					<p class="param"><strong class="param-name">id</strong> Unique identifier for the template</p>
-					<p class="param"><strong class="param-name">tmpl</strong> The template as a html string, a jQuery object or a function returning html</p>
-				<h4>call (string id, object|JPath tmpl)</h4>
+					<p class="param"><strong class="param-name">tmpl</strong> The template as a html string, a jQuery 
+						object or a function returning html</p>
+					<p>Register a template under id in order to be called</p>
+				<h4>call (string id, object|JPath data)</h4>
 					<p class="param"><strong class="param-name">id</strong> Unique identifier for the template</p>
-					<p class="param"><strong class="param-name">tmpl</strong> The data to passed to the tmplat</p>
+					<p class="param"><strong class="param-name">data</strong> The data to passed to the tmplat</p>
+					<p>Call the template <b>id</b> and resolve html specials attributes with <b>data</b></p>
 			</fieldset>
 			<fieldset>
 				<legend><h3>Html attributes</h3></legend>
+				<h4>&lt;el data-jtp-each="jpath"&gt;</h4>
+					<p>Duplicate element and process the content for each matched value of jpath 
+						with the value of the current match as data</p>
+				<h4>&lt;el data-jtp-test="jpath"&gt;</h4>
+					<p>Value of jpath determine the presence of the html element</p>
+				<h4>&lt;el data-jtp-select="jpath"&gt;</h4>
+					<p>Select the value of jpath and replace the content of the element by the result</p>
+				<h4>&lt;el data-jtp-attr="{'name':'jpath'}"&gt;</h4>
+					<p>For each property of the json object, put an html attribute on the element with the value of jpath</p>
+				<h4>&lt;el data-jtp-call="tmplId"[ data-jtp-select="tmplId"]&gt;</h4>
+					<p>Call a template and put the result into the element, if data-jtp-select is given,
+						call the template with the result of the select has data argument</p>
+					<p>(data-jtp-select > work in progress)</p>
+				<h4>&lt;el data-jtp-retain="jpath"&gt;</h4>
+					<p>(work in progress)</p>
 			</fieldset>
 		</div>
 		<h2>Dependencies</h2>

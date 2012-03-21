@@ -8,9 +8,7 @@
 	});
 
 
-	var JTmpl = function(id) {
-		
-	}
+	var JTmpl = function() {}
 
 	JTmpl.register = function(id, tmpl) {
 		if(typeof tmpl === 'string'){
@@ -57,19 +55,14 @@
 		$elem.find('*[data-jtp-attr]').each(function() {
 			var $this = $(this),
 			 	attr = $this.data('jtp-attr');
-			if(typeof attr == 'string') {
-			 	var select = $this.data('jtp-select'),
-			 		value = data.q(select) || '';
-				$this.attr(attr, value).removeAttr('data-jtp-attr').removeAttr('data-jtp-select');
-			} else if(typeof attr == 'object') {
-				//json
-				for(var name in attr) {
-					var value = data.q(attr[name]) || '';
-					$this.attr(name, value);
-				}
-				$this.removeAttr('data-jtp-attr');
+			if(typeof attr != 'object') {
+				throw Error(attr + ' is not a clean json');
 			}
-
+			for(var name in attr) {
+				var value = data.q(attr[name]) || '';
+				$this.attr(name, value);
+			}
+			$this.removeAttr('data-jtp-attr');
 		});
 
 		$elem.find('*[data-jtp-call]').each(function() {

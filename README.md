@@ -1,4 +1,4 @@
-
+[documentation](http://j-san.github.com//JTmpl)
 goals
 -----
 - No text based parser, no language to learn, all known html/javascript
