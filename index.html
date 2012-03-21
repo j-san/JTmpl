@@ -1,89 +1,99 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'>
+	<meta charset='utf-8'>
 
-  <title>j-san/JTmpl @ GitHub</title>
+	<title>j-san/JTmpl @ GitHub</title>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #fff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #000000; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #000000; }
-    h3 { text-align: center; color: #000000; }
-    a { color: #000000; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
+	<style type="text/css">
+		body {
+			margin-top: 1.0em;
+			background-color: #fff;
+			font-family: Helvetica, Arial, FreeSans, san-serif;
+			color: #000000;
+		}
+		#container { margin: 0 auto; width: 700px; }
+		h1 { font-size: 3.8em; color: #555; margin-bottom: 3px; }
+		h1 .small { font-size: 0.4em; }
+		h1 a { text-decoration: none }
+		h2 { font-size: 1.5em; color: #555; }
+		h3 { color: #555; }
+		h4 { padding-left: 14px; }
+		a { color: #555; }
+		.description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+		.download { float: right; }
+		p { padding-left: 1.5em; }
+		fieldset { margin-top: 2em; border-radius: 8px; border-color: #555; box-shadow: inset -2px -2px 8px #888; }
+		fieldset p { padding-left: 3em; }
+		pre { background: #555; color: #fff; padding: 15px;}
+		hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+		.footer { text-align:center; padding-top:30px; font-style: italic; }
+	</style>
+
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	try {
+	var pageTracker = _gat._getTracker("UA–29145433–1");
+	pageTracker._trackPageview();
+	} catch(err) {}</script>
 </head>
 
 <body>
-  <a href="https://github.com/j-san/JTmpl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+	<a href="https://github.com/j-san/JTmpl"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+	<div id="container">
+	    <div class="download">
+	      <a href="https://github.com/j-san/JTmpl/zipball/master">
+	        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
+	      <a href="https://github.com/j-san/JTmpl/tarball/master">
+	        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
+	    </div>
 
-  <div id="container">
+	    <h1><a href="https://github.com/j-san/JTmpl">JTmpl</a></h1>
 
-    <div class="download">
-      <a href="https://github.com/j-san/JTmpl/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/j-san/JTmpl/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
+	    <div class="description">
+		    <p>Html template builder for JavaScript Application like browser extention or phonegap application</p>
+	        <p>Javascript tempting with XPath inside html attributes using JPath</p>
+	    </div>
 
-    <h1><a href="https://github.com/j-san/JTmpl">JTmpl</a>
-      <span class="small">by <a href="https://github.com/j-san">j-san</a></span></h1>
+		<h2>Documentation</h2>
+		<div id="documentation">
+			<fieldset>
+				<legend><h3>JavaScript Functions</h3></legend>
+				<h4>register (string id, sting|jQuery|function tmpl)</h4>
+					<p class="param"><strong class="param-name">id</strong> Unique identifier for the template</p>
+					<p class="param"><strong class="param-name">tmpl</strong> The template as a html string, a jQuery object or a function returning html</p>
+				<h4>call (string id, object|JPath tmpl)</h4>
+					<p class="param"><strong class="param-name">id</strong> Unique identifier for the template</p>
+					<p class="param"><strong class="param-name">tmpl</strong> The data to passed to the tmplat</p>
+			</fieldset>
+			<fieldset>
+				<legend><h3>Html attributes</h3></legend>
+			</fieldset>
+		</div>
+		<h2>Dependencies</h2>
+	    	<p><a href="https://github.com/jquery/jquery">jQuery</a> and <a href="https://github.com/j-san/JPath">JPath</a></p>
 
-    <div class="description">
-      Javascript tempting with XPath inside html attributes using JPath
-    </div>
+	    <h2>Demo</h2>
+	      	<p><a href="demo/facebook.html">Facebook feeds</a></p>
 
-      <h2>Dependencies</h2>
-      <p>jQuery JPath</p>
+	    <h2>Authors</h2>
+	      	<p>Jonathan Sanchez</p>
 
-      <h2>Demo</h2>
-      <p><a href="demo/facebook.html">Facebook feeds</a></p>
+	    <h2>Download</h2>
+		    <p>
+			    You can download this project in either
+			    <a href="https://github.com/j-san/JTmpl/zipball/master">zip</a> or
+			    <a href="https://github.com/j-san/JTmpl/tarball/master">tar formats.
+		    </p>
+	    	<p>You can also clone the project with <a href="http://git-scm.com">Git</a> by running:</p>
+	      	<pre>$ git clone git://github.com/j-san/JTmpl</pre>
 
-      <h2>Authors</h2>
-      <p>Jonathan Sanchez</p>
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/j-san/JTmpl/zipball/master">zip</a> or
-      <a href="https://github.com/j-san/JTmpl/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/j-san/JTmpl</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/j-san/JTmpl">j-san/JTmpl</a>
-    </div>
-
-  </div>
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA–29145433–1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+	    <div class="footer">
+	    	get the source code on GitHub : <a href="https://github.com/j-san/JTmpl">j-san/JTmpl</a>
+	    </div>
+	</div>
 </body>
 </html>
