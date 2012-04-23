@@ -2,7 +2,7 @@
 	var templates = {};
 
 	$(function(){
-		$('script[type=jtmpl]').each(function() {
+		$('script[type=jtmpl],script[type=text/jtmpl]').each(function() {
 			JTmpl.register(this.id, this.innerHTML);
 		});
 	});
