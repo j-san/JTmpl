@@ -45,11 +45,11 @@ test('Basic template',function(){
 		</p>\
 	</div>');
 	$res = JTmpl.call('example1',data);
-	$('#test-fixture').append($res);
-	equals($res.find('p').length, 4);
-	equals($res.find('p:nth-child(1) *:nth-child(1)').text(), 'Steven');
-	// equals($res.find('p:nth-child(2)').children().length, 3);
-	equals($res.find('p:nth-child(3) *:nth-child(2)').text(), 'Test');
+	$('#qunit-fixture').append($res);
+	equal($res.find('p').length, 4);
+	equal($res.find('p:nth-child(1) *:nth-child(1)').text(), 'Steven');
+	// equal($res.find('p:nth-child(2)').children().length, 3);
+	equal($res.find('p:nth-child(3) *:nth-child(2)').text(), 'Test');
 });
 
 test('Basic template 2',function(){
@@ -69,9 +69,9 @@ test('Basic template 2',function(){
 		</p>\
 	</div>');
 	$res = JTmpl.call('example2',data);
-	$('#test-fixture').append($res);
-	equals($res.find('p').length, 4);
-	equals($res.find('p:nth-child(1) > *:nth-child(1)').text(), 'Hannibal');
-	// equals($res.find('p:nth-child(2)').children().length, 3);
-	equals($res.find('p:nth-child(3) > *:nth-child(3)').text(), 'Capitaine');
+	$('#qunit-fixture').append($res);
+	equal($res.find('p').length, 4);
+	equal($res.find('p:nth-child(1) > *:nth-child(1)').text(), 'Hannibal');
+	// equal($res.find('p:nth-child(2)').children().length, 3);
+	equal($res.find('p:nth-child(3) > *:nth-child(3)').text(), 'Capitaine');
 });
