@@ -1,8 +1,8 @@
-(function(){
+function init($) {
 	var templates = {};
 
-	$(function(){
-		$('script[type=jtmpl],script[type=text/jtmpl]').each(function() {
+	$(function() {
+		$('script[type="jtmpl"],script[type="text/jtmpl"]').each(function() {
 			JTmpl.register(this.id, this.innerHTML);
 		});
 	});
@@ -88,5 +88,15 @@
 	}
 	
 	window.JTmpl = JTmpl;
-}());
+};
+if(typeof window == 'undefined') {
+	jsdom.env('<div />', [ 'http://code.jquery.com/jquery-1.7.1.min.js' ],
+	function(errors, window) {
+		console.log(errors)
+		init(window.jQuery);
+	});	
+} else {
+	init(jQuery);
+}
+
 
