@@ -1,0 +1,27 @@
+{
+   "name": "JTmpl",
+   "version": "0.1.0",
+   "description": "",
+   "homepage": "https://github.com/j-san/JTmpl",
+   "keywords": ["template", "xpath", "jpath"],
+   "maintainers": [
+        {
+            "name": "Jonathan Sanchez",
+            "email": "",
+            "web": "http://j-san.github.com" 
+        } 
+   ],
+   "licenses": [ { "type": "MIT", "url": "http://mit-license.org/" } ],
+   "repositories": [ { "type": "git", "url": "https://github.com/j-san/JPath.git" } ],
+   "main": "",
+
+
+   "devDependencies": { 
+ 		"qunit": "0.2.x",
+ 		"JPath": "0.1.0",
+		"jsdom": ""
+   },
+   "scripts": {
+   		"test": "node test/index.js"
+   }
+}
