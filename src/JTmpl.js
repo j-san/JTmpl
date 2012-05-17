@@ -90,11 +90,14 @@ function init($) {
 	window.JTmpl = JTmpl;
 };
 if(typeof window == 'undefined') {
-	jsdom.env('<div />', [ 'http://code.jquery.com/jquery-1.7.1.min.js' ],
-	function(errors, window) {
-		console.log(errors)
-		init(window.jQuery);
-	});	
+	jsdom.env(
+        '<div />',
+        [ 'http://code.jquery.com/jquery-1.7.1.min.js' ],
+        function(errors, window) {
+            console.log(errors)
+            init(window.jQuery);
+        }
+    );
 } else {
 	init(jQuery);
 }
