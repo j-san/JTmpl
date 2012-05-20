@@ -1,14 +1,12 @@
-function init($) {
+function init($, JPath) {
 	var templates = {};
+	var JTmpl = function() {}
 
 	$(function() {
 		$('script[type="jtmpl"],script[type="text/jtmpl"]').each(function() {
 			JTmpl.register(this.id, this.innerHTML);
 		});
 	});
-
-
-	var JTmpl = function() {}
 
 	JTmpl.register = function(id, tmpl) {
 		if(typeof tmpl === 'string'){
@@ -19,7 +17,7 @@ function init($) {
 	}
 	JTmpl.call = function(id,data) {
 		var tmpl = templates[id];
-		if(tmpl instanceof jQuery){
+		if(tmpl instanceof $){
 			return transform(tmpl.clone(), new JPath(data)).children();
 		} else {
 			return tmpl(new JPath(data));
@@ -84,22 +82,31 @@ function init($) {
 	
 
 
+        console.log('transf',$elem.html());
 		return $elem;
 	}
 	
-	window.JTmpl = JTmpl;
+    return JTmpl;
 };
-if(typeof window == 'undefined') {
-	jsdom.env(
-        '<div />',
-        [ 'http://code.jquery.com/jquery-1.7.1.min.js' ],
-        function(errors, window) {
-            console.log(errors)
-            init(window.jQuery);
-        }
-    );
-} else {
-	init(jQuery);
+
+
+if (typeof exports != 'undefined') {
+    exports.load = function(callback) {
+        var jsdom = require('jsdom');
+
+        jsdom.env({
+            html: '<html><body></body></html>',
+            scripts: [__dirname + "/../lib/jquery-1.7.2.js"],
+            done: function(errors, window) {
+                var JPath = require('JPath').JPath;
+                callback(init(window.jQuery, JPath));
+            }
+        });
+    }
+}
+
+if (typeof window != 'undefined') {
+    window.JTmpl = init(jQuery, JPath);
 }
 
 

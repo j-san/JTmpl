@@ -1,7 +1,7 @@
 const qunit = require('qunit');
 
 qunit.run({
-	deps: 'jsdom',
+	deps: ['JPath'],
     code: {
         /* Include your CODE to test here */
         path: './src/JTmpl.js'
